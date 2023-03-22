@@ -1,6 +1,6 @@
 from functools import wraps
 
-to_convert = 900
+to_convert = 989
 conv_val = {
     1: "I",
     5: "V",
@@ -28,23 +28,23 @@ def validate_input(func):
 def arabic_to_roman(conv):
     roman_number = ""
     for n in reversed(conv_list):
-        if conv == n - 1 and n != 1:
-            roman_number += conv_val[conv_list[0]] + conv_val[n]
-            conv = conv - n + 1
-
-        if conv == n - 10 and n != 10:
-            roman_number += conv_val[conv_list[2]] + conv_val[n]
-            conv = conv - n + 10
-
-        if conv == n - 100 and n != 100:
-            roman_number += conv_val[conv_list[4]] + conv_val[n]
-            conv = conv - n + 100
-
         if conv // n >= 1:
             k = conv // n
             roman_number += conv_val[n] * k
-            conv = conv - k * n
-
+            conv += - k * n
+            print(conv, 1)
+        if conv == n - 1 and n != 1:
+            roman_number += conv_val[conv_list[0]] + conv_val[n]
+            conv += - n + 1
+            print(conv, 2)
+        if conv == n - 10 and n != 10:
+            roman_number += conv_val[conv_list[2]] + conv_val[n]
+            conv += - n + 10
+            print(conv, 3)
+        if n > conv > n - 100 and n != 100 and n > 100:
+            roman_number += conv_val[conv_list[4]] + conv_val[n]
+            conv += - n + 100
+            print(conv, 4)
     return roman_number, conv
 
 
