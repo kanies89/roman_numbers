@@ -13,3 +13,5 @@ def test_arabic_numbers():
 
 def test_complex():
     assert arabic_to_roman(9) == ("IX", 0)
+    assert arabic_to_roman(99) == ("IC", 0)
+    assert arabic_to_roman(90) == ("XC", 0)
