@@ -84,28 +84,23 @@ def roman_to_arabic(inp):
     roman_number = 0
     nex = False
     for s_1, s_2 in pairwise(inp):
-        if nex == True:
+        if nex:
             nex = False
             continue
-
         if s_1 == "I" and (s_2 == "X" or s_2 == "V"):
             roman_number += conv_val_roman[s_2] - 1
-            print(roman_number, 1)
             nex = True
             continue
         if s_1 == "X" and (s_2 == "L" or s_2 == "C"):
             roman_number += conv_val_roman[s_2] - 10
-            print(roman_number, 2)
             nex = True
             continue
         if s_1 == "C" and (s_2 == "D" or s_2 == "M"):
             roman_number += conv_val_roman[s_2] - 100
-            print(roman_number, 3)
             nex = True
             continue
         if s_1 == "I" or s_1 == "X" or s_1 == "C" or s_1 == "M":
             roman_number += conv_val_roman[s_1]
-            print(roman_number, 4)
 
     return roman_number, inp
 
