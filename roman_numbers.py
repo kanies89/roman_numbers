@@ -67,6 +67,7 @@ def arabic_to_roman(conv):
 def roman_to_arabic(inp):
     return 1
 
+
 if __name__ == "__main__":
     print(arabic_to_roman(to_convert))
     print(check_input("VX"))
