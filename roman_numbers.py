@@ -1,6 +1,6 @@
 from functools import wraps
 
-to_convert = 1001
+to_convert = 1501
 conv_val = {
     1: "I",
     5: "V",
@@ -27,7 +27,14 @@ def arabic_to_roman(conv):
     roman_number = ""
     if conv // 1000 >= 1:
         k = conv // 1000
-        return roman_number.join(conv_val[1000] * k), conv - k * 1000
+        roman_number += conv_val[1000] * k
+        conv = conv - k * 1000
+        print(roman_number)
+    if conv // 500 >= 1:
+        k = conv // 500
+        roman_number += conv_val[500] * k
+        conv = conv - k * 500
+    return roman_number, conv
 
 
 if __name__ == "__main__":
