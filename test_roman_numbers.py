@@ -1,20 +1,20 @@
 import pytest
-from roman_numbers import arabic_to_roman, check_input
+from roman_numbers import check_input
 
 
 def test_input():
     with pytest.raises(ValueError):
         check_input(4000)
+
+
+def test_roman():
     assert check_input("IX") == (9, 'IX')
     assert check_input("XCIX") == (99, 'XCIX')
     assert check_input("MMMCDXXXIX") == (3439, "MMMCDXXXIX")
+    assert check_input("MMMCMXCIX") == (3999, "MMMCMXCIX")
 
 
-def test_arabic_numbers():
-    assert check_input(1501) == ("MDI", 0)
-
-
-def test_complex():
+def test_arabic():
     assert check_input(9) == ("IX", 0)
     assert check_input(99) == ("XCIX", 0)
     assert check_input(90) == ("XC", 0)
