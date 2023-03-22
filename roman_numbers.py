@@ -1,4 +1,5 @@
 from functools import wraps
+from itertools import tee, zip_longest
 
 to_convert = 989
 conv_val_arab = {
@@ -26,6 +27,9 @@ ROMAN_INPUT = "IVXLCDM"
 
 conv_list = [1, 5, 10, 50, 100, 500, 1000]
 
+def pairwise(iterable):
+    a, b = tee(iterable)
+    return zip_longest(a, b, fillvalue=next(b, None))
 
 def check_input(inp):
     if type(inp) == int:
@@ -77,10 +81,29 @@ def arabic_to_roman(conv):
 
 def roman_to_arabic(inp):
     roman_number = 0
-    for index, s in enumerate(inp):
-        if s == "I" and (inp[index + 1] == "X" or inp[index + 1] == "V"):
-            roman_number += conv_val_roman[inp[index+1]] - 1
-    return roman_number
+    i = 0
+    for s_1, s_2 in pairwise(inp):
+        if i < len(inp) - 1:
+            if s_1 == "I" and (s_2 == "X" or s_2 == "V"):
+                roman_number += conv_val_roman[s_2] - 1
+                print(roman_number, 1)
+                i += 2
+                continue
+            if s_1 == "X" and (s_2 == "L" or s_2 == "C"):
+                roman_number += conv_val_roman[s_2] - 10
+                print(roman_number, 2)
+                i += 2
+                continue
+            if s_1 == "C" and (s_2 == "D" or s_2 == "M"):
+                roman_number += conv_val_roman[s_2] - 100
+                print(roman_number, 3)
+                i += 2
+                continue
+        if i <= len(inp) - 1 and (s_1 == "I" or s_1 == "X" or s_1 == "C" or s_1 == "M"):
+            roman_number += conv_val_roman[s_1]
+            print(roman_number, 4)
+            i += 1
+    return roman_number, inp
 
 
 if __name__ == "__main__":
