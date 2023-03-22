@@ -1,3 +1,5 @@
+from functools import wraps
+
 to_convert = 1001
 conv_val = {
     1: "I",
@@ -10,6 +12,17 @@ conv_val = {
 }
 
 
+def validate_input(func):
+    @wraps(func)
+    def wrapper(inp):
+        if not inp == int:
+            raise ValueError('Illegal symbol')
+        return func(inp)
+
+    return wrapper
+
+
+@validate_input
 def arabic_to_roman(conv):
     roman_number = ""
     if conv // 1000 >= 1:
