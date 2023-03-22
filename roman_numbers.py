@@ -41,7 +41,7 @@ def arabic_to_roman(conv):
             roman_number += conv_val[conv_list[2]] + conv_val[n]
             conv += - n + 10
             print(conv, 3)
-        if n > conv > n - 100 and n != 100 and n > 100:
+        if n > conv >= n - 100 and n != 100 and n > 100:
             roman_number += conv_val[conv_list[4]] + conv_val[n]
             conv += - n + 100
             print(conv, 4)
