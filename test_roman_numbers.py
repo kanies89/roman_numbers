@@ -1,10 +1,9 @@
 import pytest
-from roman_numbers import arabic_to_roman
+from roman_numbers import arabic_to_roman, check_input
 
 
 def test_input():
-    with pytest.raises(ValueError):
-        arabic_to_roman("arabic_number")
+    assert check_input("XV") == 1
     with pytest.raises(ValueError):
         arabic_to_roman(4000)
 

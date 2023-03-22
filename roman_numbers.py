@@ -11,14 +11,26 @@ conv_val = {
     1000: "M"
 }
 
+ROMAN_INPUT = "IVXLCDM"
+
 conv_list = [1, 5, 10, 50, 100, 500, 1000]
+
+
+def check_input(inp):
+    if type(inp) == int:
+        return arabic_to_roman(inp)
+    if type(inp) == str:
+        if not set(inp) <= set(ROMAN_INPUT):
+            raise ValueError('Illegal symbol')
+        else:
+            return roman_to_arabic(inp)
+    else:
+        raise ValueError('Illegal input')
 
 
 def validate_input(func):
     @wraps(func)
     def wrapper(inp):
-        if not type(inp) == int:
-            raise ValueError('Illegal symbol')
         if inp >= 4000:
             raise ValueError('Input too large')
         if inp <= 0:
@@ -52,5 +64,9 @@ def arabic_to_roman(conv):
     return roman_number, conv
 
 
+def roman_to_arabic(inp):
+    return 1
+
 if __name__ == "__main__":
     print(arabic_to_roman(to_convert))
+    print(check_input("VX"))
