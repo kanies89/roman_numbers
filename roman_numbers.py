@@ -1,7 +1,7 @@
 from functools import wraps
 
 to_convert = 989
-conv_val = {
+conv_val_arab = {
     1: "I",
     5: "V",
     10: "X",
@@ -10,6 +10,17 @@ conv_val = {
     500: "D",
     1000: "M"
 }
+
+conv_val_roman = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+}
+
 
 ROMAN_INPUT = "IVXLCDM"
 
@@ -46,19 +57,19 @@ def arabic_to_roman(conv):
     for n in reversed(conv_list):
         if conv // n >= 1:
             k = conv // n
-            roman_number += conv_val[n] * k
+            roman_number += conv_val_arab[n] * k
             conv += - k * n
 
         if n > conv >= n - 1 and n != 1 and conv < 49:
-            roman_number += conv_val[conv_list[0]] + conv_val[n]
+            roman_number += conv_val_arab[conv_list[0]] + conv_val_arab[n]
             conv += - n + 1
 
         if n > conv >= n - 10 and n != 10 and 50 < n <= 100:
-            roman_number += conv_val[conv_list[2]] + conv_val[n]
+            roman_number += conv_val_arab[conv_list[2]] + conv_val_arab[n]
             conv += - n + 10
 
         if n > conv >= n - 100 and n != 100 and n > 100:
-            roman_number += conv_val[conv_list[4]] + conv_val[n]
+            roman_number += conv_val_arab[conv_list[4]] + conv_val_arab[n]
             conv += - n + 100
 
     return roman_number, conv
@@ -67,8 +78,8 @@ def arabic_to_roman(conv):
 def roman_to_arabic(inp):
     roman_number = 0
     for index, s in enumerate(inp):
-        if s == "I" and inp[index + 1] == "X":
-            roman_number += 9
+        if s == "I" and (inp[index + 1] == "X" or inp[index + 1] == "V"):
+            roman_number += conv_val_roman[inp[index+1]] - 1
     return roman_number
 
 
