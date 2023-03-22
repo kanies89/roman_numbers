@@ -3,10 +3,10 @@ from roman_numbers import arabic_to_roman, check_input
 
 
 def test_input():
-    assert check_input("IX") == (9, 'IX')
     with pytest.raises(ValueError):
         arabic_to_roman(4000)
-
+    assert check_input("IX") == (9, 'IX')
+    assert check_input("XCIX") == (99, 'XCIX')
 
 def test_arabic_numbers():
     assert arabic_to_roman(1501) == ("MDI", 0)
