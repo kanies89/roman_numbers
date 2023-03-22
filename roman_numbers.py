@@ -15,7 +15,7 @@ conv_val = {
 def validate_input(func):
     @wraps(func)
     def wrapper(inp):
-        if not inp == int:
+        if not type(inp) == int:
             raise ValueError('Illegal symbol')
         return func(inp)
 
@@ -26,7 +26,8 @@ def validate_input(func):
 def arabic_to_roman(conv):
     roman_number = ""
     if conv // 1000 >= 1:
-        return roman_number.join(conv_val[1000] * (conv // 1000))
+        k = conv // 1000
+        return roman_number.join(conv_val[1000] * k), conv - k * 1000
 
 
 if __name__ == "__main__":
