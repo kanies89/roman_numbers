@@ -17,3 +17,4 @@ def test_complex():
     assert arabic_to_roman(90) == ("XC", 0)
     assert arabic_to_roman(900) == ("CM", 0)
     assert arabic_to_roman(989) == ("CMLXXXIX", 0)
+    assert arabic_to_roman(3999) == ("MMMCMXCIX", 0)
