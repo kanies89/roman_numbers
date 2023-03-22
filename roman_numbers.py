@@ -19,6 +19,10 @@ def validate_input(func):
     def wrapper(inp):
         if not type(inp) == int:
             raise ValueError('Illegal symbol')
+        if inp >= 4000:
+            raise ValueError('Input too large')
+        if inp <= 0:
+            raise ValueError('Input too small')
         return func(inp)
 
     return wrapper
@@ -32,19 +36,19 @@ def arabic_to_roman(conv):
             k = conv // n
             roman_number += conv_val[n] * k
             conv += - k * n
-            print(conv, 1)
+
         if n > conv >= n - 1 and n != 1 and conv < 49:
             roman_number += conv_val[conv_list[0]] + conv_val[n]
             conv += - n + 1
-            print(conv, 2)
+
         if n > conv >= n - 10 and n != 10 and 50 < n <= 100:
             roman_number += conv_val[conv_list[2]] + conv_val[n]
             conv += - n + 10
-            print(conv, 3)
+
         if n > conv >= n - 100 and n != 100 and n > 100:
             roman_number += conv_val[conv_list[4]] + conv_val[n]
             conv += - n + 100
-            print(conv, 4)
+
     return roman_number, conv
 
 
