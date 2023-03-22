@@ -13,7 +13,8 @@ conv_val = {
 def arabic_to_roman(conv):
     roman_number = ""
     if conv // 1000 >= 1:
-        return roman_number.join(conv_val[1000]*(conv // 1000))
+        return roman_number.join(conv_val[1000] * (conv // 1000))
 
 
-print(arabic_to_roman(to_convert))
+if __name__ == "__main__":
+    print(arabic_to_roman(to_convert))
