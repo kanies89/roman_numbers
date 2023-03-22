@@ -65,9 +65,13 @@ def arabic_to_roman(conv):
 
 
 def roman_to_arabic(inp):
-    return 1
+    roman_number = 0
+    for index, s in enumerate(inp):
+        if s == "I" and inp[index + 1] == "X":
+            roman_number += 9
+    return roman_number
 
 
 if __name__ == "__main__":
     print(arabic_to_roman(to_convert))
-    print(check_input("VX"))
+    print(check_input("IX"))
