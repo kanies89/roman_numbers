@@ -3,7 +3,7 @@ from roman_numbers import arabic_to_roman, check_input
 
 
 def test_input():
-    assert check_input("XV") == 1
+    assert check_input("IX") == 9
     with pytest.raises(ValueError):
         arabic_to_roman(4000)
 
