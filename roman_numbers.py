@@ -11,6 +11,8 @@ conv_val = {
     1000: "M"
 }
 
+conv_list = [1, 5, 10, 50, 100, 500, 1000]
+
 
 def validate_input(func):
     @wraps(func)
@@ -25,15 +27,12 @@ def validate_input(func):
 @validate_input
 def arabic_to_roman(conv):
     roman_number = ""
-    if conv // 1000 >= 1:
-        k = conv // 1000
-        roman_number += conv_val[1000] * k
-        conv = conv - k * 1000
-        print(roman_number)
-    if conv // 500 >= 1:
-        k = conv // 500
-        roman_number += conv_val[500] * k
-        conv = conv - k * 500
+    for n in reversed(conv_list):
+        if conv // n >= 1:
+            k = conv // n
+            roman_number += conv_val[n] * k
+            conv = conv - k * n
+            print(roman_number)
     return roman_number, conv
 
 
